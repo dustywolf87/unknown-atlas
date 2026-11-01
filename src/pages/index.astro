@@ -1,16 +1,129 @@
+
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="UNKNOWN ATLAS"
+  description="An independent journal of exploration, journeys and field notes."
+>
+  <section class="home-hero">
+    <p class="eyebrow">PERSONAL FIELD ARCHIVE - EST. 2026</p>
+
+    <h1 class="title">
+      UNKNOWN<br>
+      <em>ATLAS</em>
+    </h1>
+
+    <p class="home-intro">
+      Notes from the road, places discovered and stories
+      collected along the way.
+    </p>
+  </section>
+
+  <section class="home-sections">
+    <a href="/articles/" class="home-section">
+      <span class="section-number">01</span>
+      <div>
+        <h2>Journal</h2>
+        <p>Stories, journeys and reflections.</p>
+      </div>
+      <span class="section-arrow">↗</span>
+    </a>
+
+    <a href="/field-notes/" class="home-section">
+      <span class="section-number">02</span>
+      <div>
+        <h2>Field Notes</h2>
+        <p>Observations and fragments from the field.</p>
+      </div>
+      <span class="section-arrow">↗</span>
+    </a>
+  </section>
+</BaseLayout>
+
+<style>
+  .home-hero {
+    padding: clamp(80px, 14vw, 170px) 0 100px;
+    max-width: 850px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    margin-bottom: 28px;
+  }
+
+  .home-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(64px, 12vw, 130px);
+    font-weight: 400;
+    line-height: .88;
+    letter-spacing: -.055em;
+    margin: 0;
+  }
+
+  .home-intro {
+    max-width: 430px;
+    margin-top: 38px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .home-sections {
+    border-top: 1px solid var(--line);
+    margin-bottom: 80px;
+  }
+
+  .home-section {
+    display: grid;
+    grid-template-columns: 60px 1fr 30px;
+    align-items: center;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .section-number,
+  .section-arrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+
+  .home-section h2 {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 5px;
+  }
+
+  .home-section p {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .section-arrow {
+    text-align: right;
+    font-size: 18px;
+  }
+
+  .home-section:hover h2 {
+    color: var(--rust);
+  }
+
+  @media (max-width: 600px) {
+    .home-hero {
+      padding-top: 90px;
+      padding-bottom: 75px;
+    }
+
+    .home-section {
+      grid-template-columns: 35px 1fr 20px;
+      gap: 12px;
+    }
+  }
+</style>
+
