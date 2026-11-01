@@ -20,6 +20,7 @@
   --paper: #f2efe7;
   --paper-alt: #ece6d8;
   --ink: #171917;
+  --ink-soft: rgba(23,25,23,0.62);
   --green: #35483f;
   --rust: #c8643d;
   --rust-dark: #a84f30;
@@ -143,6 +144,15 @@ small {
   text-transform: uppercase;
 }
 
+.title {
+  overflow-wrap: break-word;
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 8vw + 30px, 148px);
+  font-weight: var(--font-bold);
+  letter-spacing: -.04em;
+  color: var(--ink);
+  text-transform: uppercase;  
+}
 
 /* ---------------------------------------------------------
    5. HEADER
