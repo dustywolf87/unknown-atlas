@@ -1,0 +1,37 @@
+
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+
+  return articles
+    .filter((article) =>
+      import.meta.env.DEV ||
+      (!article.data.draft && article.data.pubDate <= new Date())
+    )
+    .map((article) => ({
+      params: { slug: article.id },
+      props: { article },
+    }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+---
+
+<BaseLayout
+  title={article.data.title}
+  description={article.data.description}
+>
+  <article class="article">
+    <p>JOURNAL</p>
+    <h1>{article.data.title}</h1>
+    <p>
+      {article.data.pubDate.toLocaleDateString('en-GB')}
+    </p>
+
+    <Content />
+  </article>
+</BaseLayout>

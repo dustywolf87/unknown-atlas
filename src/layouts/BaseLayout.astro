@@ -1,0 +1,50 @@
+
+---
+import '../styles/style.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'UNKNOWN ATLAS',
+  description = 'An independent project about exploration, travel and the places in between.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} — UNKNOWN ATLAS</title>
+  </head>
+
+  <body>
+    <header class="site-header" id="top">
+      <a class="site-logo" href="/">
+        <span class="logo-unknown">UNKNOWN</span>
+        <span class="logo-atlas">ATLAS</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/articles/">Journal</a>
+        <a href="/field-notes/">Field Notes</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p>© {new Date().getFullYear()} UNKNOWN ATLAS</p>
+      <p>Made for getting lost, deliberately.</p>
+      <a href="#top">BACK TO TOP ↑</a>
+    </footer>
+  </body>
+</html>
