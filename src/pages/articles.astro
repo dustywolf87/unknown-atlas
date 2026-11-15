@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { isPublished, byDateDesc, formatDate } from '../utils/content';
+
+const articles = (await getCollection('articles')).filter(isPublished).sort(byDateDesc);
+---
+
+<BaseLayout
+  title="Journal"
+  description="Stories, routes and reflections from the road."
+>
+  <section class="page-hero page-hero--notes">
+    <div class="container">
+      <p class="page-kicker">JOURNAL</p>
+      <h1 class="page-title">Journal</h1>
+    </div>
+  </section>
+
+  <section class="section notes-list-section">
+    <div class="container">
+      <div class="notes-grid">
+        {articles.length > 0 ? (
+          articles.map((article) => (
+            <article class="note-card">
+              <p class="note-date">{formatDate(article.data.pubDate)}</p>
+              <h2 class="note-title">
+                <a href={`/articles/${article.id}/`}>{article.data.title}</a>
+              </h2>
+              <p class="note-excerpt">{article.data.description}</p>
+
+              {article.data.tags.length > 0 && (
+                <ul class="term-list note-terms" aria-label="Tags">
+                  {article.data.tags.map((tag) => <li>#{tag}</li>)}
+                </ul>
+              )}
+            </article>
+          ))
+        ) : (
+          <p class="empty-state">No articles published yet.</p>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

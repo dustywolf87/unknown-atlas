@@ -1,0 +1,19 @@
+---
+import type { GpxPoint } from '../utils/gpx';
+import { trackGeometry } from '../utils/svg';
+
+interface Props {
+  points: GpxPoint[];
+}
+
+const geo = trackGeometry(Astro.props.points);
+---
+
+{geo && (
+  <svg viewBox={geo.viewBox} preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    {geo.topo.map((d) => <path class="track-topo" d={d} />)}
+    <polyline class="track-line" points={geo.line} />
+    <circle class="track-start" cx={geo.start[0]} cy={geo.start[1]} r="6" />
+    <circle class="track-end" cx={geo.end[0]} cy={geo.end[1]} r="6" />
+  </svg>
+)}

@@ -1,0 +1,35 @@
+---
+import type { RouteView } from '../utils/routes';
+import Icon from './Icon.astro';
+import ElevationSvg from './ElevationSvg.astro';
+
+interface Props {
+  route: RouteView;
+  alt?: boolean;
+}
+
+const { route, alt = false } = Astro.props;
+const iconName = /mtb|bike/i.test(route.type) ? 'bike' : /trek/i.test(route.type) ? 'trek' : 'boot';
+---
+
+<article class:list={['route-card', { 'is-alt': alt }]}>
+  <h3 class="route-title"><a href={`/routes/${route.id}/`}>{route.title}</a></h3>
+  <div class="route-region">{route.region}</div>
+
+  <div class="route-stats">
+    <div class="route-stat"><b>{route.distance} km</b><span>DISTANCE</span></div>
+    <div class="route-stat"><b>+{route.elevation} m</b><span>ELEVATION</span></div>
+    <div class="route-stat"><b>{route.duration}</b><span>TIME</span></div>
+  </div>
+
+  <div class="route-elev">
+    <ElevationSvg elevations={route.elevations} color={route.color} />
+  </div>
+
+  <div class="route-foot">
+    <div class="route-type"><Icon name={iconName} /> {route.type.toUpperCase()}</div>
+    {route.gpxUrl && (
+      <a class="gpx-link" href={route.gpxUrl} download>GPX <Icon name="download" /></a>
+    )}
+  </div>
+</article>

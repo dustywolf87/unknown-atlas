@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="UnknownAtlas" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk>
+    <name>Val Grande Trail</name>
+    <trkseg>
+      <trkpt lat="46.074667" lon="8.411539"><ele>1216.5</ele></trkpt>
+      <trkpt lat="46.072080" lon="8.415096"><ele>1126.1</ele></trkpt>
+      <trkpt lat="46.070071" lon="8.418969"><ele>1027.1</ele></trkpt>
+      <trkpt lat="46.068466" lon="8.420333"><ele>945.9</ele></trkpt>
+      <trkpt lat="46.066426" lon="8.423433"><ele>899.3</ele></trkpt>
+      <trkpt lat="46.063230" lon="8.423367"><ele>893.4</ele></trkpt>
+      <trkpt lat="46.062172" lon="8.425706"><ele>916.2</ele></trkpt>
+      <trkpt lat="46.060575" lon="8.427421"><ele>952.3</ele></trkpt>
+      <trkpt lat="46.060268" lon="8.430192"><ele>980.7</ele></trkpt>
+      <trkpt lat="46.059187" lon="8.433079"><ele>991.3</ele></trkpt>
+      <trkpt lat="46.057578" lon="8.435569"><ele>986.5</ele></trkpt>
+      <trkpt lat="46.055012" lon="8.439861"><ele>966.9</ele></trkpt>
+      <trkpt lat="46.052401" lon="8.442654"><ele>944.7</ele></trkpt>
+      <trkpt lat="46.049507" lon="8.444389"><ele>948.0</ele></trkpt>
+      <trkpt lat="46.046508" lon="8.444283"><ele>988.3</ele></trkpt>
+      <trkpt lat="46.042915" lon="8.443812"><ele>1053.5</ele></trkpt>
+      <trkpt lat="46.040344" lon="8.440664"><ele>1139.7</ele></trkpt>
+      <trkpt lat="46.038525" lon="8.437305"><ele>1224.4</ele></trkpt>
+      <trkpt lat="46.038170" lon="8.434188"><ele>1272.3</ele></trkpt>
+      <trkpt lat="46.037288" lon="8.429307"><ele>1291.9</ele></trkpt>
+      <trkpt lat="46.037086" lon="8.425100"><ele>1253.6</ele></trkpt>
+      <trkpt lat="46.037351" lon="8.421874"><ele>1185.5</ele></trkpt>
+      <trkpt lat="46.036761" lon="8.419526"><ele>1096.9</ele></trkpt>
+      <trkpt lat="46.035911" lon="8.417141"><ele>1021.6</ele></trkpt>
+      <trkpt lat="46.035178" lon="8.415555"><ele>974.7</ele></trkpt>
+      <trkpt lat="46.034349" lon="8.412718"><ele>955.6</ele></trkpt>
+      <trkpt lat="46.033544" lon="8.409042"><ele>972.5</ele></trkpt>
+      <trkpt lat="46.032466" lon="8.405477"><ele>988.4</ele></trkpt>
+      <trkpt lat="46.030502" lon="8.402413"><ele>1004.7</ele></trkpt>
+      <trkpt lat="46.030517" lon="8.397228"><ele>988.5</ele></trkpt>
+      <trkpt lat="46.030560" lon="8.393957"><ele>960.4</ele></trkpt>
+      <trkpt lat="46.033392" lon="8.390101"><ele>921.8</ele></trkpt>
+      <trkpt lat="46.036115" lon="8.387494"><ele>883.0</ele></trkpt>
+      <trkpt lat="46.038615" lon="8.385397"><ele>881.0</ele></trkpt>
+      <trkpt lat="46.042134" lon="8.386321"><ele>910.0</ele></trkpt>
+      <trkpt lat="46.045603" lon="8.387610"><ele>984.9</ele></trkpt>
+      <trkpt lat="46.048300" lon="8.389008"><ele>1079.6</ele></trkpt>
+      <trkpt lat="46.049586" lon="8.390550"><ele>1172.2</ele></trkpt>
+      <trkpt lat="46.051397" lon="8.391844"><ele>1236.3</ele></trkpt>
+      <trkpt lat="46.054119" lon="8.392984"><ele>1277.1</ele></trkpt>
+      <trkpt lat="46.056067" lon="8.393987"><ele>1253.8</ele></trkpt>
+      <trkpt lat="46.057326" lon="8.393558"><ele>1212.3</ele></trkpt>
+      <trkpt lat="46.059965" lon="8.393995"><ele>1147.8</ele></trkpt>
+      <trkpt lat="46.062747" lon="8.394074"><ele>1087.8</ele></trkpt>
+      <trkpt lat="46.066954" lon="8.393668"><ele>1043.7</ele></trkpt>
+      <trkpt lat="46.069605" lon="8.395551"><ele>1035.4</ele></trkpt>
+      <trkpt lat="46.072352" lon="8.397721"><ele>1046.3</ele></trkpt>
+      <trkpt lat="46.074622" lon="8.399823"><ele>1050.1</ele></trkpt>
+      <trkpt lat="46.075369" lon="8.404452"><ele>1050.5</ele></trkpt>
+      <trkpt lat="46.076264" lon="8.408963"><ele>1026.9</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

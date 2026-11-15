@@ -1,39 +1,69 @@
-
 ---
 import '../styles/style.css';
+import { site } from '../site';
+import KofiBlock from '../components/KofiBlock.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  paperBg?: boolean;
+  kofi?: boolean;
 }
 
 const {
-  title = 'UNKNOWN ATLAS',
+  title = site.name,
   description = 'An independent project about exploration, travel and the places in between.',
+  paperBg = false,
+  kofi = true,
 } = Astro.props;
+
+const fullTitle = title === site.name ? title : `${title} — ${site.name}`;
+const path = Astro.url.pathname;
+const navItems = [
+  { href: '/routes/', label: 'Routes' },
+  { href: '/field-notes/', label: 'Field Notes' },
+  { href: '/articles/', label: 'Journal' },
+];
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} — UNKNOWN ATLAS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
   </head>
 
-  <body>
+  <body class={paperBg ? 'paper-bg' : undefined}>
     <header class="site-header" id="top">
       <a class="site-logo" href="/">
         <span class="logo-unknown">UNKNOWN</span>
         <span class="logo-atlas">ATLAS</span>
       </a>
 
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="/">Home</a>
-        <a href="/articles/">Journal</a>
-        <a href="/field-notes/">Field Notes</a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open menu"
+      >
+        MENU
+      </button>
+
+      <nav class="site-nav" id="primary-nav" aria-label="Main navigation">
+        <ul>
+          {navItems.map((item) => (
+            <li>
+              <a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
     </header>
 
@@ -41,10 +71,16 @@ const {
       <slot />
     </main>
 
+    {kofi && <KofiBlock context="footer" />}
+
     <footer class="site-footer">
-      <p>© {new Date().getFullYear()} UNKNOWN ATLAS</p>
+      <p>© {new Date().getFullYear()} {site.name}</p>
       <p>Made for getting lost, deliberately.</p>
       <a href="#top">BACK TO TOP ↑</a>
     </footer>
+
+    <script>
+      import '../scripts/main.ts';
+    </script>
   </body>
 </html>

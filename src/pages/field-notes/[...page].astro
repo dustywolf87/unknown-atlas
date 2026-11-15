@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import { site } from '../../site';
+import { isPublished, byDateDesc, formatDate } from '../../utils/content';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const notes = (await getCollection('fieldNotes')).filter(isPublished).sort(byDateDesc);
+  return paginate(notes, { pageSize: 10 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+const items = await Promise.all(
+  page.data.map(async (note) => {
+    const { Content } = await render(note);
+    const permalinkPath = `/field-notes/${note.id}/`;
+    const permalink = site.siteUrl ? `${site.siteUrl}${permalinkPath}` : '';
+    const shareText = (note.body ?? '')
+      .replace(/[#*_>`~\[\]()!]/g, '')
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 20)
+      .join(' ');
+    const xUrl =
+      'https://x.com/intent/post?text=' +
+      encodeURIComponent(shareText) +
+      (permalink ? '&url=' + encodeURIComponent(permalink) : '');
+    const waUrl =
+      'https://wa.me/?text=' + encodeURIComponent(permalink ? `${shareText} ${permalink}` : shareText);
+
+    return { note, Content, permalinkPath, xUrl, waUrl };
+  })
+);
+---
+
+<BaseLayout
+  title="Field Notes"
+  description="Short notes, observations and fragments from the field."
+>
+  <section class="page-hero page-hero--article">
+    <div class="container">
+      <p class="page-kicker">FIELD NOTES</p>
+      <h1 class="page-title">Field Notes</h1>
+    </div>
+  </section>
+
+  {items.length > 0 ? (
+    items.map(({ note, Content, permalinkPath, xUrl, waUrl }) => (
+      <article id={note.id} class="fn-item">
+        <div class="container">
+          <div class="article-meta">
+            <div class="fn-head">
+              {site.avatar && (
+                <span class="fn-avatar">
+                  <img
+                    class="fn-avatar-img"
+                    src={site.avatar}
+                    alt={site.nickname}
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                  />
+                </span>
+              )}
+              <div class="fn-who">
+                {site.nickname && <div class="fn-nick">{site.nickname}</div>}
+                <div class="article-date fn-date">{formatDate(note.data.pubDate)}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="single-content">
+            <Content />
+          </div>
+
+          <ul class="term-list fn-actions">
+            <li><a href={permalinkPath}>Permalink</a></li>
+            <li><span class="fn-share-label">Share:</span></li>
+            <li><a href={xUrl} target="_blank" rel="noopener noreferrer">X</a></li>
+            <li><a href={waUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          </ul>
+        </div>
+      </article>
+    ))
+  ) : (
+    <div class="container article-meta">
+      <p class="empty-state">No notes published yet.</p>
+    </div>
+  )}
+
+  {(page.url.prev || page.url.next) && (
+    <nav class="container fn-pagination" aria-label="Notes pagination">
+      {page.url.prev && <a href={page.url.prev}>← Newer</a>}
+      {page.url.next && <a href={page.url.next}>Older →</a>}
+    </nav>
+  )}
+</BaseLayout>

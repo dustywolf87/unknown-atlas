@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import ElevationSvg from '../../components/ElevationSvg.astro';
+import TrackSvg from '../../components/TrackSvg.astro';
+import KofiBlock from '../../components/KofiBlock.astro';
+import { render } from 'astro:content';
+import { getRouteViews, gpxHref } from '../../utils/routes';
+
+export async function getStaticPaths() {
+  const views = await getRouteViews();
+  return views.map((route) => ({ params: { slug: route.id }, props: { route } }));
+}
+
+const { route } = Astro.props;
+const { Content } = await render(route.entry);
+const { cover, gallery, stages } = route.entry.data;
+const hasGpx = route.points.length > 1 && route.entry.data.gpx;
+const iconName = /mtb|bike/i.test(route.type) ? 'bike' : /trek/i.test(route.type) ? 'trek' : 'boot';
+---
+
+<BaseLayout title={route.title} description={`${route.title} — ${route.region}`} kofi={false}>
+  <section class="page-hero page-hero--article">
+    <div class="container">
+      <p class="page-kicker">
+        <a href={`/region/${route.regionSlug}/`}>{route.region}</a>
+      </p>
+      <h1 class="page-title">{route.title}</h1>
+    </div>
+  </section>
+
+  {cover && (
+    <div class="container">
+      <div class="route-cover"><img src={cover} alt={route.title} /></div>
+    </div>
+  )}
+
+  <div class="container">
+    <div class="single-meta">
+      <div class="route-stat"><b>{route.distance} km</b><span>DISTANCE</span></div>
+      <div class="route-stat"><b>+{route.elevation} m</b><span>ELEVATION</span></div>
+      <div class="route-stat"><b>{route.duration}</b><span>TIME</span></div>
+      <div class="route-stat route-stat--activity">
+        <b><Icon name={iconName} />{route.type.toUpperCase()}</b><span>ACTIVITY</span>
+      </div>
+      <div class={`route-stat difficulty-${route.difficulty.toLowerCase()}`}>
+        <b>{route.difficulty.toUpperCase()}</b><span>DIFFICULTY</span>
+      </div>
+    </div>
+
+    {hasGpx && (
+      <div class="single-map"><TrackSvg points={route.points} /></div>
+    )}
+
+    {hasGpx && (
+      <div class="single-elev">
+        <h3>Elevation profile</h3>
+        <ElevationSvg elevations={route.elevations} color={route.color} />
+      </div>
+    )}
+
+    {stages.length > 0 && (
+      <div class="stages">
+        <h3>Stages</h3>
+        {stages.map((stage, i) => (
+          <div class="stage-row">
+            <div class="stage-num">{String(i + 1).padStart(2, '0')}</div>
+            <div class="stage-name">{stage.name}</div>
+            <div>{stage.distanceKm} km</div>
+            <div>+{stage.elevationGainM} m</div>
+            <div>
+              {stage.gpx && (
+                <a class="gpx-link" href={gpxHref(stage.gpx)} download>GPX <Icon name="download" /></a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {gallery.length > 0 && (
+      <div class="gallery">
+        <h3>Gallery</h3>
+        <div class="gallery-grid">
+          {gallery.map((img) => (
+            <a class="gallery-item" href={img.src} data-full={img.src}>
+              <img src={img.src} alt={img.alt} loading="lazy" />
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="single-content">
+      <h3>Route notes</h3>
+      <Content />
+    </div>
+
+    {route.gpxUrl && (
+      <a class="button" href={route.gpxUrl} download>DOWNLOAD GPX ↓</a>
+    )}
+  </div>
+
+  <KofiBlock context="route" />
+</BaseLayout>

@@ -1,0 +1,48 @@
+---
+import type { RouteView } from '../utils/routes';
+import RouteCard from './RouteCard.astro';
+
+interface Props {
+  kicker: string;
+  title: string;
+  filters: { label: string; href: string; active?: boolean }[];
+  allActive?: boolean;
+  routes: RouteView[];
+}
+
+const { kicker, title, filters, allActive = false, routes } = Astro.props;
+---
+
+<div class="archive-routes">
+  <section class="page-hero page-hero--article">
+    <div class="container">
+      <p class="page-kicker">{kicker}</p>
+      <h1 class="page-title">{title}</h1>
+    </div>
+  </section>
+
+  {filters.length > 0 && (
+    <div class="container">
+      <div class="article-meta">
+        <div class="filter-bar">
+          <a href="/routes/" class={allActive ? 'active' : undefined}>All</a>
+          {filters.map((f) => (
+            <a href={f.href} class={f.active ? 'active' : undefined}>{f.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+
+  <section class="section archive-routes-body">
+    <div class="container">
+      <div class="routes-grid">
+        {routes.length > 0 ? (
+          routes.map((route, i) => <RouteCard route={route} alt={i % 2 === 1} />)
+        ) : (
+          <p class="empty-state">No routes found.</p>
+        )}
+      </div>
+    </div>
+  </section>
+</div>

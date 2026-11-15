@@ -1,16 +1,98 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RouteCard from '../components/RouteCard.astro';
+import Icon from '../components/Icon.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../site';
+import { getRouteViews, pickHomeRoutes } from '../utils/routes';
+import { isPublished, byDateDesc, formatDate, plainExcerpt } from '../utils/content';
+
+const homeRoutes = pickHomeRoutes(await getRouteViews());
+const latestNotes = (await getCollection('fieldNotes'))
+  .filter(isPublished)
+  .sort(byDateDesc)
+  .slice(0, 4);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="UNKNOWN ATLAS"
+  description="An independent journal of exploration, journeys and field notes."
+  paperBg
+>
+  <section class="home-hero">
+    <div class="home-hero-copy">
+      <p class="eyebrow">PERSONAL FIELD ARCHIVE - EST. 2026</p>
+
+      <h1 class="title">
+        UNKNOWN<br />
+        <em>ATLAS</em>
+      </h1>
+
+      <div class="home-intro">
+        <p class="home-intro-text">
+          Notes from the road, places discovered and stories collected along the way.
+        </p>
+        <span class="home-scroll-land" aria-hidden="true">SCROLL TO EXPLORE ↓</span>
+      </div>
+    </div>
+
+    <div class="home-route" aria-hidden="true">
+      <svg viewBox="0 0 800 350">
+        <path d="M-20 265 C95 244 108 116 219 161 S347 315 420 205 S531 41 610 126 S724 253 842 55" />
+        <circle cx="219" cy="161" r="7" />
+        <circle cx="610" cy="126" r="7" />
+      </svg>
+      <span>SCROLL TO EXPLORE ↓</span>
+    </div>
+  </section>
+
+  <section class="section field-section" id="from-the-field">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">01 / FIELD NOTES</p>
+          <h2 class="section-title">FROM THE FIELD</h2>
+        </div>
+        <a class="view-all" href="/field-notes/">VIEW ALL FIELD NOTES <Icon name="arrow-right" /></a>
+      </div>
+
+      <div class="field-grid">
+        {latestNotes.length > 0 ? (
+          latestNotes.map((note) => (
+            <article class="field-card">
+              <div>
+                <p class="field-date">{formatDate(note.data.pubDate)}</p>
+                <p class="field-text">
+                  <a href={`/field-notes/#${note.id}`}>{plainExcerpt(note.body ?? '') || note.data.title}</a>
+                </p>
+              </div>
+              {site.nickname && <p class="field-author">{site.nickname}</p>}
+            </article>
+          ))
+        ) : (
+          <p class="empty-state">No field notes published yet.</p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section routes-section" id="routes">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">02 / ATLAS</p>
+          <h2 class="section-title">LATEST ROUTES</h2>
+        </div>
+        <a class="view-all" href="/routes/">VIEW ALL ROUTES <Icon name="arrow-right" /></a>
+      </div>
+
+      <div class="routes-grid">
+        {homeRoutes.length > 0 ? (
+          homeRoutes.map((route, i) => <RouteCard route={route} alt={i > 0} />)
+        ) : (
+          <p class="empty-state">No routes published yet.</p>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

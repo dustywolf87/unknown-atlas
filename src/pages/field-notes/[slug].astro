@@ -1,20 +1,15 @@
-
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { isPublished, formatDate } from '../../utils/content';
 
 export async function getStaticPaths() {
   const notes = await getCollection('fieldNotes');
 
-  return notes
-    .filter((note) =>
-      import.meta.env.DEV ||
-      (!note.data.draft && note.data.pubDate <= new Date())
-    )
-    .map((note) => ({
-      params: { slug: note.id },
-      props: { note },
-    }));
+  return notes.filter(isPublished).map((note) => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
 }
 
 const { note } = Astro.props;
@@ -22,13 +17,28 @@ const { Content } = await render(note);
 ---
 
 <BaseLayout title={note.data.title}>
-  <article class="field-note">
-    <p>FIELD NOTES</p>
-    <h1>{note.data.title}</h1>
-    <p>
-      {note.data.pubDate.toLocaleDateString('en-GB')}
-    </p>
+  <section class="page-hero page-hero--article">
+    <div class="container">
+      <p class="page-kicker"><a href="/field-notes/">FIELD NOTES</a></p>
+      <h1 class="page-title">{note.data.title}</h1>
+    </div>
+  </section>
 
-    <Content />
-  </article>
+  <div class="container">
+    <div class="article-meta">
+      <p class="article-date">{formatDate(note.data.pubDate)}</p>
+
+      {note.data.tags.length > 0 && (
+        <ul class="term-list" aria-label="Tags">
+          {note.data.tags.map((tag) => <li>#{tag}</li>)}
+        </ul>
+      )}
+    </div>
+  </div>
+
+  <section class="section article-body">
+    <div class="container single-content">
+      <Content />
+    </div>
+  </section>
 </BaseLayout>

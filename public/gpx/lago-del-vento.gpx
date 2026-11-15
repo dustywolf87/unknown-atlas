@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="UnknownAtlas" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk>
+    <name>Lago del Vento</name>
+    <trkseg>
+      <trkpt lat="45.819374" lon="9.520443"><ele>458.7</ele></trkpt>
+      <trkpt lat="45.817931" lon="9.524382"><ele>426.8</ele></trkpt>
+      <trkpt lat="45.816324" lon="9.525700"><ele>411.2</ele></trkpt>
+      <trkpt lat="45.815589" lon="9.529259"><ele>427.8</ele></trkpt>
+      <trkpt lat="45.816293" lon="9.531947"><ele>458.7</ele></trkpt>
+      <trkpt lat="45.816214" lon="9.535955"><ele>498.2</ele></trkpt>
+      <trkpt lat="45.814470" lon="9.539307"><ele>526.9</ele></trkpt>
+      <trkpt lat="45.814740" lon="9.544922"><ele>535.0</ele></trkpt>
+      <trkpt lat="45.812140" lon="9.547655"><ele>539.0</ele></trkpt>
+      <trkpt lat="45.809889" lon="9.551797"><ele>523.8</ele></trkpt>
+      <trkpt lat="45.806201" lon="9.552595"><ele>529.9</ele></trkpt>
+      <trkpt lat="45.803658" lon="9.552560"><ele>550.4</ele></trkpt>
+      <trkpt lat="45.798895" lon="9.550678"><ele>588.2</ele></trkpt>
+      <trkpt lat="45.796866" lon="9.548232"><ele>616.4</ele></trkpt>
+      <trkpt lat="45.794693" lon="9.544132"><ele>643.6</ele></trkpt>
+      <trkpt lat="45.793720" lon="9.540051"><ele>645.5</ele></trkpt>
+      <trkpt lat="45.792230" lon="9.537393"><ele>609.0</ele></trkpt>
+      <trkpt lat="45.790461" lon="9.533997"><ele>556.8</ele></trkpt>
+      <trkpt lat="45.790421" lon="9.532619"><ele>500.0</ele></trkpt>
+      <trkpt lat="45.788381" lon="9.531055"><ele>458.9</ele></trkpt>
+      <trkpt lat="45.785828" lon="9.528307"><ele>433.9</ele></trkpt>
+      <trkpt lat="45.783437" lon="9.526118"><ele>438.5</ele></trkpt>
+      <trkpt lat="45.781078" lon="9.523179"><ele>462.6</ele></trkpt>
+      <trkpt lat="45.779116" lon="9.518858"><ele>484.7</ele></trkpt>
+      <trkpt lat="45.777927" lon="9.514088"><ele>509.4</ele></trkpt>
+      <trkpt lat="45.778000" lon="9.510300"><ele>511.0</ele></trkpt>
+      <trkpt lat="45.780607" lon="9.506692"><ele>496.3</ele></trkpt>
+      <trkpt lat="45.782683" lon="9.503206"><ele>490.9</ele></trkpt>
+      <trkpt lat="45.786109" lon="9.501268"><ele>497.0</ele></trkpt>
+      <trkpt lat="45.790563" lon="9.500465"><ele>519.6</ele></trkpt>
+      <trkpt lat="45.793043" lon="9.501121"><ele>566.6</ele></trkpt>
+      <trkpt lat="45.796234" lon="9.502596"><ele>615.4</ele></trkpt>
+      <trkpt lat="45.797766" lon="9.502143"><ele>646.1</ele></trkpt>
+      <trkpt lat="45.799969" lon="9.502105"><ele>661.4</ele></trkpt>
+      <trkpt lat="45.802103" lon="9.500409"><ele>638.3</ele></trkpt>
+      <trkpt lat="45.805459" lon="9.498069"><ele>590.2</ele></trkpt>
+      <trkpt lat="45.808137" lon="9.497045"><ele>543.9</ele></trkpt>
+      <trkpt lat="45.811161" lon="9.494873"><ele>496.7</ele></trkpt>
+      <trkpt lat="45.815910" lon="9.496176"><ele>471.5</ele></trkpt>
+      <trkpt lat="45.818817" lon="9.497190"><ele>466.3</ele></trkpt>
+      <trkpt lat="45.821013" lon="9.500380"><ele>476.3</ele></trkpt>
+      <trkpt lat="45.822182" lon="9.504115"><ele>493.0</ele></trkpt>
+      <trkpt lat="45.823455" lon="9.508592"><ele>493.7</ele></trkpt>
+      <trkpt lat="45.822060" lon="9.512882"><ele>483.1</ele></trkpt>
+      <trkpt lat="45.820736" lon="9.517686"><ele>464.3</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

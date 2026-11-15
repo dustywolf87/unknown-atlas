@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RoutesArchive from '../../components/RoutesArchive.astro';
+import { getRouteViews, typeFilters } from '../../utils/routes';
+
+export async function getStaticPaths() {
+  const all = await getRouteViews();
+
+  return typeFilters(all).map((t) => ({
+    params: { type: t.slug },
+    props: {
+      name: t.name,
+      routes: all.filter((r) => r.typeSlug === t.slug),
+      filters: typeFilters(all).map((f) => ({
+        label: f.name,
+        href: `/route-type/${f.slug}/`,
+        active: f.slug === t.slug,
+      })),
+    },
+  }));
+}
+
+const { name, routes, filters } = Astro.props;
+---
+
+<BaseLayout title={name} description={`${name} routes with GPX tracks.`}>
+  <RoutesArchive kicker="ROUTES" title={name} filters={filters} routes={routes} />
+</BaseLayout>

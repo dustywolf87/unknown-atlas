@@ -1,0 +1,18 @@
+---
+import { elevationGeometry } from '../utils/svg';
+
+interface Props {
+  elevations: number[];
+  color?: string;
+}
+
+const { elevations, color = '#c8643d' } = Astro.props;
+const geo = elevationGeometry(elevations);
+---
+
+{geo && (
+  <svg viewBox={geo.viewBox} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="elev-fill" d={geo.fill} fill={color} />
+    <polyline class="elev-line" points={geo.line} stroke={color} />
+  </svg>
+)}

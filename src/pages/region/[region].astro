@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RoutesArchive from '../../components/RoutesArchive.astro';
+import { getRouteViews, regionFilters } from '../../utils/routes';
+
+export async function getStaticPaths() {
+  const all = await getRouteViews();
+
+  return regionFilters(all).map((r) => ({
+    params: { region: r.slug },
+    props: {
+      name: r.name,
+      routes: all.filter((v) => v.regionSlug === r.slug),
+      filters: regionFilters(all).map((f) => ({
+        label: f.name,
+        href: `/region/${f.slug}/`,
+        active: f.slug === r.slug,
+      })),
+    },
+  }));
+}
+
+const { name, routes, filters } = Astro.props;
+---
+
+<BaseLayout title={name} description={`Routes in ${name}.`}>
+  <RoutesArchive kicker="ROUTES" title={name} filters={filters} routes={routes} />
+</BaseLayout>

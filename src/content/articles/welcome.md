@@ -1,4 +1,3 @@
-
 ---
 title: "Welcome to UNKNOWN ATLAS"
 description: "An independent project about exploration, travel and the places in between."

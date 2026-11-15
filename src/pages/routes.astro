@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RoutesArchive from '../components/RoutesArchive.astro';
+import { getRouteViews, typeFilters } from '../utils/routes';
+
+const routes = await getRouteViews();
+const filters = typeFilters(routes).map((t) => ({
+  label: t.name,
+  href: `/route-type/${t.slug}/`,
+}));
+---
+
+<BaseLayout title="Routes" description="Trekking, hiking and MTB routes with GPX tracks.">
+  <RoutesArchive kicker="ARCHIVE" title="ROUTES" filters={filters} allActive routes={routes} />
+</BaseLayout>
