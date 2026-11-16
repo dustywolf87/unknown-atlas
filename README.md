@@ -1,5 +1,5 @@
 # unknown-atlas
-UNKNOWN ATLAS — Independent journal and route archive
+UNKNOWN ATLAS — Notes, routes and things worth sharing.
 
 ## Struttura cartelle pagine
 `src/pages/
@@ -17,4 +17,3 @@ UNKNOWN ATLAS — Independent journal and route archive
 │   └── [type].astro
 └── region/
     └── [region].astro
-`
